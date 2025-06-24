@@ -74,4 +74,11 @@ class MemberTest {
 
         Assertions.assertThat(member.verifyPassword(newPassword, passwordEncoder)).isTrue();
     }
+
+    @Test
+    void constructorNullFail1() {
+        Assertions.assertThatThrownBy(() -> {
+            Member.create(null, "juno", "secret", passwordEncoder);
+        }).isInstanceOf(NullPointerException.class);
+    }
 }
