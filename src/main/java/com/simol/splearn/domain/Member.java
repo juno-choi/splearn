@@ -4,10 +4,11 @@ import lombok.Getter;
 import org.springframework.util.Assert;
 
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 @Getter
 public class Member {
-    private String email;
+    private Email email;
 
     private String nickname;
 
@@ -15,15 +16,19 @@ public class Member {
 
     private MemberStatus status;
 
-    private Member(String email, String nickname, String passwordHash) {
-        this.email = Objects.requireNonNull(email);
-        this.nickname = Objects.requireNonNull(nickname);
-        this.passwordHash = Objects.requireNonNull(passwordHash);
-        this.status = MemberStatus.PENDING;
+    private Member() {
+
     }
 
-    public static Member create(String email, String nickname, String password, PasswordEncoder passwordEncoder) {
-        return new Member(email, nickname, passwordEncoder.encode(password));
+    public static Member create(MemberCreateRequest memberCreateRequest, PasswordEncoder passwordEncoder) {
+        Member member = new Member();
+
+        member.email = new Email(memberCreateRequest.email());
+        member.nickname = Objects.requireNonNull(memberCreateRequest.nickname());
+        member.passwordHash = Objects.requireNonNull(passwordEncoder.encode(memberCreateRequest.password()));
+        member.status = MemberStatus.PENDING;
+
+        return member;
     }
 
     public void activate() {
@@ -41,10 +46,14 @@ public class Member {
     }
 
     public void changeNickname(String nickname) {
-        this.nickname = nickname;
+        this.nickname = Objects.requireNonNull(nickname);
     }
 
     public void changePassword(String password, PasswordEncoder passwordEncoder) {
-        this.passwordHash = passwordEncoder.encode(password);
+        this.passwordHash = passwordEncoder.encode(Objects.requireNonNull(password));
+    }
+
+    public boolean isActive() {
+        return this.status == MemberStatus.ACTIVATE;
     }
 }
