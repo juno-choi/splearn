@@ -4,8 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class MemberTest {
     // fixture
     Member member;
@@ -25,8 +23,8 @@ class MemberTest {
                 return encode(password).equals(passwordHash);
             }
         };
-        MemberCreateRequest memberCreateRequest = new MemberCreateRequest("mail@mail.com", "juno", "secret");
-        member = Member.create(memberCreateRequest, passwordEncoder);
+        MemberRegisterRequest memberRegisterRequest = new MemberRegisterRequest("mail@mail.com", "juno", "secret");
+        member = Member.register(memberRegisterRequest, passwordEncoder);
     }
 
     @Test
@@ -78,9 +76,9 @@ class MemberTest {
 
     @Test
     void constructorNullFail1() {
-        MemberCreateRequest memberCreateRequest = new MemberCreateRequest(null, "juno", "secret");
+        MemberRegisterRequest memberRegisterRequest = new MemberRegisterRequest(null, "juno", "secret");
         Assertions.assertThatThrownBy(() -> {
-            Member.create(memberCreateRequest, passwordEncoder);
+            Member.register(memberRegisterRequest, passwordEncoder);
         }).isInstanceOf(NullPointerException.class);
     }
 
@@ -100,7 +98,7 @@ class MemberTest {
 
     @Test
     void invalidEmail() {
-        Assertions.assertThatThrownBy(() -> Member.create(new MemberCreateRequest("invalid email", "juno", "secret"), passwordEncoder))
+        Assertions.assertThatThrownBy(() -> Member.register(new MemberRegisterRequest("invalid email", "juno", "secret"), passwordEncoder))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
