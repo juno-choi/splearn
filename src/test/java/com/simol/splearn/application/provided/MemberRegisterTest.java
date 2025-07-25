@@ -22,5 +22,15 @@ public class MemberRegisterTest {
         Assertions.assertThat(member.getId()).isNotNull();
         Assertions.assertThat(member.getStatus()).isEqualTo(MemberStatus.PENDING);
     }
+    @Test
+    void duplicateEmailFail() {
+        Member member = memberRegister.register(MemberFixture.createMemberRegisterRequest());
+
+        Assertions.assertThatThrownBy(() -> {
+            memberRegister.register(MemberFixture.createMemberRegisterRequest());
+        }).isInstanceOf(DuplicateEmailException.class);
+
+
+    }
 
 }

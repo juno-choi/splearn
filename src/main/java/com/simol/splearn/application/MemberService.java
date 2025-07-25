@@ -3,9 +3,7 @@ package com.simol.splearn.application;
 import com.simol.splearn.application.provided.MemberRegister;
 import com.simol.splearn.application.required.EmailSender;
 import com.simol.splearn.application.required.MemberRepository;
-import com.simol.splearn.domain.Member;
-import com.simol.splearn.domain.MemberRegisterRequest;
-import com.simol.splearn.domain.PasswordEncoder;
+import com.simol.splearn.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +17,9 @@ public class MemberService implements MemberRegister {
     @Override
     public Member register(MemberRegisterRequest memberRegisterRequest) {
         // check
+        if (memberRepository.findByEmail(new Email(memberRegisterRequest.email())).isPresent()) {
+            throw new DuplicateEmailException("duplicated email!");
+        }
 
         // domain model
         Member member = Member.register(memberRegisterRequest, passwordEncoder);

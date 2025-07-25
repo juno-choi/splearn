@@ -14,6 +14,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -76,6 +77,11 @@ class MemberRegisterManualTest {
             // test 코드에서 reflection을 이용하여 간단하게 setId 적용
             ReflectionTestUtils.setField(member, "id", 1L);
             return member;
+        }
+
+        @Override
+        public Optional<Member> findByEmail(Email email) {
+            return Optional.empty();
         }
     }
 
