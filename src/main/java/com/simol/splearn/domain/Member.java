@@ -5,6 +5,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.NaturalIdCache;
 import org.springframework.util.Assert;
 
 import java.util.Objects;
@@ -13,6 +15,7 @@ import java.util.Objects;
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NaturalIdCache // @NaturalId를 영속성에서 캐싱하여 사용할 수 있도록 처리해준다. 성능적으로 개선할 수 있다
 public class Member {
 
     @Id
@@ -20,6 +23,8 @@ public class Member {
     private Long id;
 
     @Embedded
+    // 비지니스 의미 있는 아이디의 경우 unique
+    @NaturalId
     private Email email;
 
     private String nickname;
