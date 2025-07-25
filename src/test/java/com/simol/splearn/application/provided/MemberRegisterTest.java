@@ -2,18 +2,18 @@ package com.simol.splearn.application.provided;
 
 import com.simol.splearn.SplearnTestConfiguration;
 import com.simol.splearn.domain.*;
+import jakarta.transaction.Transactional;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.TestConstructor;
 
 @SpringBootTest
-@Import(SplearnTestConfiguration.class)
-// test configuration 처리
-public class MemberRegisterTest {
-    @Autowired
-    private MemberRegister memberRegister;
+@Transactional
+@Import(SplearnTestConfiguration.class) // test configuration 처리
+//@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
+public record MemberRegisterTest(MemberRegister memberRegister) {
 
     @Test
     void register() {
