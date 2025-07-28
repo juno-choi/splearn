@@ -11,10 +11,10 @@ class SplearnApplicationTest {
 
     @Test
     void run() {
-        MockedStatic<SpringApplication> mocked = Mockito.mockStatic(SpringApplication.class);
+        try(MockedStatic<SpringApplication> mocked = Mockito.mockStatic(SpringApplication.class)) {
+            SplearnApplication.main(new String[]{});
 
-        SplearnApplication.main(new String[]{});
-
-        mocked.verify(() -> SpringApplication.run(SplearnApplication.class, new String[]{}));
+            mocked.verify(() -> SpringApplication.run(SplearnApplication.class, new String[]{}));
+        }
     }
 }
