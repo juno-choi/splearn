@@ -2,6 +2,7 @@ package com.simol.splearn.application.provided;
 
 import com.simol.splearn.SplearnTestConfiguration;
 import com.simol.splearn.domain.*;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolationException;
 import org.assertj.core.api.Assertions;
@@ -19,6 +20,9 @@ public class MemberRegisterTest {
 
     @Autowired
     private MemberRegister memberRegister;
+
+    @Autowired
+    private EntityManager entityManager;
 
     @Test
     void register() {
@@ -47,5 +51,19 @@ public class MemberRegisterTest {
     private void extracted(MemberRegisterRequest invalid) {
         Assertions.assertThatThrownBy(() -> memberRegister.register(invalid))
                 .isInstanceOf(ConstraintViolationException.class);
+    }
+
+    @Test
+    void activate() {
+        Member member = memberRegister.register(MemberFixture.createMemberRegisterRequest());
+
+        // repository 반영 후 activate 실행되도록
+        entityManager.flush();
+        entityManager.clear();
+
+        member = memberRegister.activate(member.getId());
+        entityManager.flush();
+
+        Assertions.assertThat(member.getStatus()).isEqualTo(MemberStatus.ACTIVATE);
     }
 }
