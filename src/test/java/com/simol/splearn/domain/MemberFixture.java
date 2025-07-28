@@ -3,7 +3,7 @@ package com.simol.splearn.domain;
 public class MemberFixture {
 
     public static MemberRegisterRequest createMemberRegisterRequest(String email) {
-        return new MemberRegisterRequest(email, "juno", "secret");
+        return new MemberRegisterRequest(email, "juno123", "verysecret");
     }
 
     public static MemberRegisterRequest createMemberRegisterRequest() {

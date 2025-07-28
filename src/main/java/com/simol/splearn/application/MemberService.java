@@ -6,9 +6,13 @@ import com.simol.splearn.application.required.MemberRepository;
 import com.simol.splearn.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 @Service
+@Validated
 @RequiredArgsConstructor
+@Transactional
 public class MemberService implements MemberRegister {
     private final MemberRepository memberRepository;
     private final EmailSender emailSender;

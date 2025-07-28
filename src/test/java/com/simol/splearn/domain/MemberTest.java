@@ -47,12 +47,12 @@ class MemberTest {
 
     @Test
     void verifyPassword() {
-        Assertions.assertThat(member.verifyPassword("secret", passwordEncoder)).isTrue();
+        Assertions.assertThat(member.verifyPassword("verysecret", passwordEncoder)).isTrue();
     }
 
     @Test
     void changeNickname() {
-        Assertions.assertThat(member.getNickname()).isEqualTo("juno");
+        Assertions.assertThat(member.getNickname()).isEqualTo("juno123");
 
         member.changeNickname("junho");
 
@@ -61,7 +61,7 @@ class MemberTest {
 
     @Test
     void changePassword() {
-        String newPassword = "verysecret";
+        String newPassword = "verysecret2";
 
         member.changePassword(newPassword, passwordEncoder);
 
