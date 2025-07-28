@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.TestConstructor;
 
 @SpringBootTest
 @Transactional
@@ -42,13 +41,13 @@ public class MemberRegisterTest {
 
     @Test
     void memberRegisterRequestFail() {
-        extracted(new MemberRegisterRequest("juno@mail.com", "juno", "verysecret"));
-        extracted(new MemberRegisterRequest("juno@mail.com", "juno12345678901234567890", "verysecret"));
-        extracted(new MemberRegisterRequest("juno.mail.com", "juno12345678901234567890", "verysecret"));
+        checkValidation(new MemberRegisterRequest("juno@mail.com", "juno", "verysecret"));
+        checkValidation(new MemberRegisterRequest("juno@mail.com", "juno12345678901234567890", "verysecret"));
+        checkValidation(new MemberRegisterRequest("juno.mail.com", "juno12345678901234567890", "verysecret"));
 
     }
 
-    private void extracted(MemberRegisterRequest invalid) {
+    private void checkValidation(MemberRegisterRequest invalid) {
         Assertions.assertThatThrownBy(() -> memberRegister.register(invalid))
                 .isInstanceOf(ConstraintViolationException.class);
     }

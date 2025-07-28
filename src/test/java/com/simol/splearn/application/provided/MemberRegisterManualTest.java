@@ -1,8 +1,5 @@
 package com.simol.splearn.application.provided;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-
 class MemberRegisterManualTest {
 //
 //    // stub은 단순히 테스트를 진행하기 위해 속이는 역할
