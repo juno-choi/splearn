@@ -1,21 +1,5 @@
 package com.simol.splearn.application.provided;
 
-import com.simol.splearn.application.MemberService;
-import com.simol.splearn.application.required.EmailSender;
-import com.simol.splearn.application.required.MemberRepository;
-import com.simol.splearn.domain.Email;
-import com.simol.splearn.domain.Member;
-import com.simol.splearn.domain.MemberFixture;
-import com.simol.splearn.domain.MemberStatus;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.springframework.test.util.ReflectionTestUtils;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 

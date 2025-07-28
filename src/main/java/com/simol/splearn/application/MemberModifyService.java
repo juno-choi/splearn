@@ -1,5 +1,6 @@
 package com.simol.splearn.application;
 
+import com.simol.splearn.application.provided.MemberFinder;
 import com.simol.splearn.application.provided.MemberRegister;
 import com.simol.splearn.application.required.EmailSender;
 import com.simol.splearn.application.required.MemberRepository;
@@ -13,10 +14,11 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 @RequiredArgsConstructor
 @Transactional
-public class MemberService implements MemberRegister {
+public class MemberModifyService implements MemberRegister {
     private final MemberRepository memberRepository;
     private final EmailSender emailSender;
     private final PasswordEncoder passwordEncoder;
+    private final MemberFinder memberFinder;
 
     @Override
     public Member register(MemberRegisterRequest memberRegisterRequest) {
@@ -36,7 +38,7 @@ public class MemberService implements MemberRegister {
     public Member activate(Long memberId) {
         // check
         // find
-        Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("member not found id: %s".formatted(memberId)));
+        Member member = memberFinder.find(memberId);
         // logic
         member.activate();
 
