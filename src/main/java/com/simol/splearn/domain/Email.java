@@ -6,7 +6,7 @@ import jakarta.persistence.Embeddable;
 import java.util.regex.Pattern;
 
 @Embeddable
-public record Email(@Column(name = "email", length = 150, nullable = false) String address) {
+public record Email(String address) {
 
     private static final Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
 

@@ -17,18 +17,12 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @NaturalIdCache // @NaturalId를 영속성에서 캐싱하여 사용할 수 있도록 처리해준다. 성능적으로 개선할 수 있다
-public class Member {
+public class Member extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Embedded
     // 비지니스 의미 있는 아이디의 경우 unique
     @NaturalId
     private Email email;
 
-    @Column(length = 100, nullable = false)
     private String nickname;
 
     @Column(length = 200, nullable = false)
