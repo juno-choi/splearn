@@ -1,8 +1,7 @@
 package com.simol.splearn.domain.member;
 
 import com.simol.splearn.domain.AbstractEntity;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -15,10 +14,15 @@ import java.util.Objects;
 @Getter
 @ToString(callSuper = true)
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
+@Table(name = "MEMBER_DETAIL", uniqueConstraints = {@UniqueConstraint(name = "UK_MEMBER_PROFILE_ADDRESS", columnNames = "profile_address")})
 public class MemberDetail extends AbstractEntity {
     @Embedded
     private Profile profile;
+
+    @Column(columnDefinition = "TEXT")
     private String introduction;
+
+    @Column(nullable = false)
     private LocalDateTime registeredAt;
     private LocalDateTime activatedAt;
     private LocalDateTime deactivatedAt;

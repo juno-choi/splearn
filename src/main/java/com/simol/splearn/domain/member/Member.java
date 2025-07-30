@@ -14,7 +14,10 @@ import org.springframework.util.Assert;
 import java.util.Objects;
 
 @Entity
-@Table(name = "MEMBER", uniqueConstraints = @UniqueConstraint(name = "UK_MEMBER_EMAIL_ADDRESS", columnNames = "email_address"))
+@Table(name = "MEMBER", uniqueConstraints = {
+        @UniqueConstraint(name = "UK_MEMBER_EMAIL_ADDRESS", columnNames = "email_address"),
+        @UniqueConstraint(name = "UK_MEMBER_DETAIL_ID", columnNames = "detail_id")
+})
 @Getter
 @ToString(callSuper = true, exclude = "detail")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -35,6 +38,7 @@ public class Member extends AbstractEntity {
     private MemberStatus status;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "detail_id")
     private MemberDetail detail;
 
     public static Member register(MemberRegisterRequest memberRegisterRequest, PasswordEncoder passwordEncoder) {
@@ -71,6 +75,8 @@ public class Member extends AbstractEntity {
     }
 
     public void updateInfo(MemberInfoUpdateRequest updateRequest) {
+        Assert.state(this.status == MemberStatus.ACTIVATE, "ACTIVE 상태가 아닙니다");
+
         this.nickname = Objects.requireNonNull(updateRequest.nickname());
         this.detail.updateInfo(updateRequest);
     }
