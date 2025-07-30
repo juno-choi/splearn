@@ -14,7 +14,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "MEMBER", uniqueConstraints = @UniqueConstraint(name = "UK_MEMBER_EMAIL_ADDRESS", columnNames = "email_address"))
 @Getter
-@ToString
+@ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @NaturalIdCache // @NaturalId를 영속성에서 캐싱하여 사용할 수 있도록 처리해준다. 성능적으로 개선할 수 있다
 public class Member extends AbstractEntity {
