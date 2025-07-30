@@ -54,15 +54,49 @@ public class MemberRegisterTest {
 
     @Test
     void activate() {
-        Member member = memberRegister.register(MemberFixture.createMemberRegisterRequest());
-
-        // repository 반영 후 activate 실행되도록
-        entityManager.flush();
-        entityManager.clear();
+        Member member = registerMember();
 
         member = memberRegister.activate(member.getId());
         entityManager.flush();
 
         Assertions.assertThat(member.getStatus()).isEqualTo(MemberStatus.ACTIVATE);
+        Assertions.assertThat(member.getDetail().getActivatedAt()).isNotNull();
+    }
+
+
+    @Test
+    void deactivate() {
+        Member member = registerMember();
+
+        member = memberRegister.activate(member.getId());
+        entityManager.flush();
+        entityManager.clear();
+
+        member = memberRegister.deactivate(member.getId());
+
+        Assertions.assertThat(member.getStatus()).isEqualTo(MemberStatus.DEACTIVATED);
+        Assertions.assertThat(member.getDetail().getDeactivatedAt()).isNotNull();
+    }
+
+    private Member registerMember() {
+        Member member = memberRegister.register(MemberFixture.createMemberRegisterRequest());
+
+        // repository 반영 후 activate 실행되도록
+        entityManager.flush();
+        entityManager.clear();
+        return member;
+    }
+
+    @Test
+    void updateInfo() {
+        Member member = registerMember();
+
+        member = memberRegister.activate(member.getId());
+        entityManager.flush();
+        entityManager.clear();
+
+        member = memberRegister.updateInfo(member.getId(), new MemberInfoUpdateRequest("junho", "address", "자기소개"));
+
+        Assertions.assertThat(member.getDetail().getProfile().address()).isEqualTo("address");
     }
 }

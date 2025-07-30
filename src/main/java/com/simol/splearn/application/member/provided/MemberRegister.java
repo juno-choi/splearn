@@ -1,6 +1,7 @@
 package com.simol.splearn.application.member.provided;
 
 import com.simol.splearn.domain.member.Member;
+import com.simol.splearn.domain.member.MemberInfoUpdateRequest;
 import com.simol.splearn.domain.member.MemberRegisterRequest;
 import jakarta.validation.Valid;
 
@@ -10,4 +11,6 @@ import jakarta.validation.Valid;
 public interface MemberRegister {
     Member register(@Valid MemberRegisterRequest memberRegisterRequest);
     Member activate(Long memberId);
+    Member deactivate(Long memberId);
+    Member updateInfo(Long memberId, @Valid MemberInfoUpdateRequest memberInfoUpdateRequest);
 }

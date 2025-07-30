@@ -2,6 +2,7 @@ package com.simol.splearn.application.member.required;
 
 import com.simol.splearn.domain.member.Member;
 import com.simol.splearn.domain.member.MemberFixture;
+import com.simol.splearn.domain.member.MemberStatus;
 import jakarta.persistence.EntityManager;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,12 @@ class MemberRepositoryTest {
         Assertions.assertThat(member.getId()).isNotNull();
 
         entityManager.flush();
+        entityManager.clear();
+
+        var findMember = memberRepository.findById(member.getId()).orElseThrow();
+        Assertions.assertThat(findMember.getStatus()).isEqualTo(MemberStatus.PENDING);
+        Assertions.assertThat(findMember.getDetail().getRegisteredAt()).isNotNull();
+
     }
 
     @Test

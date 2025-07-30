@@ -16,7 +16,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "MEMBER", uniqueConstraints = @UniqueConstraint(name = "UK_MEMBER_EMAIL_ADDRESS", columnNames = "email_address"))
 @Getter
-@ToString(callSuper = true)
+@ToString(callSuper = true, exclude = "detail")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @NaturalIdCache // @NaturalId를 영속성에서 캐싱하여 사용할 수 있도록 처리해준다. 성능적으로 개선할 수 있다
 public class Member extends AbstractEntity {
@@ -34,8 +34,7 @@ public class Member extends AbstractEntity {
     @Column(length = 50, nullable = false)
     private MemberStatus status;
 
-
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private MemberDetail detail;
 
     public static Member register(MemberRegisterRequest memberRegisterRequest, PasswordEncoder passwordEncoder) {
@@ -46,17 +45,21 @@ public class Member extends AbstractEntity {
         member.passwordHash = Objects.requireNonNull(passwordEncoder.encode(memberRegisterRequest.password()));
         member.status = MemberStatus.PENDING;
 
+        member.detail = MemberDetail.create();
+
         return member;
     }
 
     public void activate() {
         Assert.state(this.status == MemberStatus.PENDING, "PENDING 상태가 아닙니다");
         this.status = MemberStatus.ACTIVATE;
+        this.detail.setActivatedAt();
     }
 
     public void deactivate() {
         Assert.state(this.status == MemberStatus.ACTIVATE, "ACTIVE 상태가 아닙니다");
         this.status = MemberStatus.DEACTIVATED;
+        this.detail.deactivate();
     }
 
     public boolean verifyPassword(String secret, PasswordEncoder passwordEncoder) {
@@ -65,6 +68,11 @@ public class Member extends AbstractEntity {
 
     public void changeNickname(String nickname) {
         this.nickname = Objects.requireNonNull(nickname);
+    }
+
+    public void updateInfo(MemberInfoUpdateRequest updateRequest) {
+        this.nickname = Objects.requireNonNull(updateRequest.nickname());
+        this.detail.updateInfo(updateRequest);
     }
 
     public void changePassword(String password, PasswordEncoder passwordEncoder) {
