@@ -1,4 +1,4 @@
-package com.simol.splearn.domain;
+package com.simol.splearn.domain.shared;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

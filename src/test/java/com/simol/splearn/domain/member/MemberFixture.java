@@ -1,4 +1,4 @@
-package com.simol.splearn.domain;
+package com.simol.splearn.domain.member;
 
 public class MemberFixture {
 

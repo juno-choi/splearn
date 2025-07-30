@@ -1,7 +1,7 @@
-package com.simol.splearn.application.provided;
+package com.simol.splearn.application.member.provided;
 
 import com.simol.splearn.SplearnTestConfiguration;
-import com.simol.splearn.domain.*;
+import com.simol.splearn.domain.member.*;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolationException;

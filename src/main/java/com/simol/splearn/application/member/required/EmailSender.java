@@ -1,6 +1,6 @@
-package com.simol.splearn.application.required;
+package com.simol.splearn.application.member.required;
 
-import com.simol.splearn.domain.Email;
+import com.simol.splearn.domain.shared.Email;
 
 /**
  * 이메일을 발송한다

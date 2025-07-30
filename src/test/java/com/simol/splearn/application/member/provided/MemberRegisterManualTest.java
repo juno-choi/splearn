@@ -1,4 +1,4 @@
-package com.simol.splearn.application.provided;
+package com.simol.splearn.application.member.provided;
 
 class MemberRegisterManualTest {
 //

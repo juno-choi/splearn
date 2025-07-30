@@ -1,12 +1,10 @@
 package com.simol.splearn.adapter.integration;
 
-import com.simol.splearn.domain.Email;
+import com.simol.splearn.domain.shared.Email;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.StdIo;
 import org.junitpioneer.jupiter.StdOut;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class DummyEmailSenderTest {
 

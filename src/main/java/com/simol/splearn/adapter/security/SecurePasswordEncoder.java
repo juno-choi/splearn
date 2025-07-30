@@ -1,6 +1,6 @@
 package com.simol.splearn.adapter.security;
 
-import com.simol.splearn.domain.PasswordEncoder;
+import com.simol.splearn.domain.member.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 

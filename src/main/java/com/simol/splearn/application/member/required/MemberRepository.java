@@ -1,7 +1,7 @@
-package com.simol.splearn.application.required;
+package com.simol.splearn.application.member.required;
 
-import com.simol.splearn.domain.Email;
-import com.simol.splearn.domain.Member;
+import com.simol.splearn.domain.shared.Email;
+import com.simol.splearn.domain.member.Member;
 import org.springframework.data.repository.Repository;
 
 import java.util.Optional;

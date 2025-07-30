@@ -1,7 +1,7 @@
 package com.simol.splearn.adapter.integration;
 
-import com.simol.splearn.application.required.EmailSender;
-import com.simol.splearn.domain.Email;
+import com.simol.splearn.application.member.required.EmailSender;
+import com.simol.splearn.domain.shared.Email;
 import org.springframework.context.annotation.Fallback;
 import org.springframework.stereotype.Component;
 

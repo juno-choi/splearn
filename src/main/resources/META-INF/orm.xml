@@ -5,7 +5,7 @@
                                     https://hibernate.org/xsd/orm/mapping/mapping-3.1.0.xsd">
     <access>FIELD</access>
 
-    <entity class="com.simol.splearn.domain.Member">
+    <entity class="com.simol.splearn.domain.member.Member">
         <table name="MEMBER">
             <unique-constraint name="UK_MEMBER_EMAIL_ADDRESS">
                 <column-name>email_address</column-name>

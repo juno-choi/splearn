@@ -1,6 +1,5 @@
-package com.simol.splearn.domain;
+package com.simol.splearn.domain.shared;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 import java.util.regex.Pattern;

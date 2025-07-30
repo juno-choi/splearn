@@ -1,7 +1,7 @@
-package com.simol.splearn.application.required;
+package com.simol.splearn.application.member.required;
 
-import com.simol.splearn.domain.Member;
-import com.simol.splearn.domain.MemberFixture;
+import com.simol.splearn.domain.member.Member;
+import com.simol.splearn.domain.member.MemberFixture;
 import jakarta.persistence.EntityManager;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

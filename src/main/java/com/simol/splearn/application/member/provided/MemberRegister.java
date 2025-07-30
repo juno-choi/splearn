@@ -1,7 +1,7 @@
-package com.simol.splearn.application.provided;
+package com.simol.splearn.application.member.provided;
 
-import com.simol.splearn.domain.Member;
-import com.simol.splearn.domain.MemberRegisterRequest;
+import com.simol.splearn.domain.member.Member;
+import com.simol.splearn.domain.member.MemberRegisterRequest;
 import jakarta.validation.Valid;
 
 /**

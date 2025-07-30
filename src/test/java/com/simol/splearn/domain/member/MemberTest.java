@@ -1,11 +1,11 @@
-package com.simol.splearn.domain;
+package com.simol.splearn.domain.member;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.simol.splearn.domain.MemberFixture.createMemberRegisterRequest;
-import static com.simol.splearn.domain.MemberFixture.createPasswordEncoder;
+import static com.simol.splearn.domain.member.MemberFixture.createMemberRegisterRequest;
+import static com.simol.splearn.domain.member.MemberFixture.createPasswordEncoder;
 
 class MemberTest {
     // fixture

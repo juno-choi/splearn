@@ -1,10 +1,14 @@
-package com.simol.splearn.application;
+package com.simol.splearn.application.member;
 
-import com.simol.splearn.application.provided.MemberFinder;
-import com.simol.splearn.application.provided.MemberRegister;
-import com.simol.splearn.application.required.EmailSender;
-import com.simol.splearn.application.required.MemberRepository;
-import com.simol.splearn.domain.*;
+import com.simol.splearn.application.member.provided.MemberFinder;
+import com.simol.splearn.application.member.provided.MemberRegister;
+import com.simol.splearn.application.member.required.EmailSender;
+import com.simol.splearn.application.member.required.MemberRepository;
+import com.simol.splearn.domain.member.DuplicateEmailException;
+import com.simol.splearn.domain.member.Member;
+import com.simol.splearn.domain.member.MemberRegisterRequest;
+import com.simol.splearn.domain.member.PasswordEncoder;
+import com.simol.splearn.domain.shared.Email;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

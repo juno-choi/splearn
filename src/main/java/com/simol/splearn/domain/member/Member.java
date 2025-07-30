@@ -1,5 +1,7 @@
-package com.simol.splearn.domain;
+package com.simol.splearn.domain.member;
 
+import com.simol.splearn.domain.AbstractEntity;
+import com.simol.splearn.domain.shared.Email;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -33,6 +35,7 @@ public class Member extends AbstractEntity {
     private MemberStatus status;
 
 
+    @OneToOne
     private MemberDetail detail;
 
     public static Member register(MemberRegisterRequest memberRegisterRequest, PasswordEncoder passwordEncoder) {

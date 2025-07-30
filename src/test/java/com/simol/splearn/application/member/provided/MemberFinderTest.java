@@ -1,8 +1,8 @@
-package com.simol.splearn.application.provided;
+package com.simol.splearn.application.member.provided;
 
 import com.simol.splearn.SplearnTestConfiguration;
-import com.simol.splearn.domain.Member;
-import com.simol.splearn.domain.MemberFixture;
+import com.simol.splearn.domain.member.Member;
+import com.simol.splearn.domain.member.MemberFixture;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.assertj.core.api.Assertions;

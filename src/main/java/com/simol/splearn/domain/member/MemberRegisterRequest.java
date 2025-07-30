@@ -1,4 +1,4 @@
-package com.simol.splearn.domain;
+package com.simol.splearn.domain.member;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;

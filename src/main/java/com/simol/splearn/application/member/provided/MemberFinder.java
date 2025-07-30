@@ -1,6 +1,6 @@
-package com.simol.splearn.application.provided;
+package com.simol.splearn.application.member.provided;
 
-import com.simol.splearn.domain.Member;
+import com.simol.splearn.domain.member.Member;
 
 /**
  * 회원을 조회한다
